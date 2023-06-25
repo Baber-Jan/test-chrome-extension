@@ -53,11 +53,11 @@ const getProducts = async () => {
     
         const data = await response.json();
         products = products.concat(data.items);
-    
-        if (data.items.length === 0) {
-        hasMore = false;
-        } else {
-        page++;
+        if (data.pagination.current_page === data.pagination.total_pages || data.items.length === 0) {
+            hasMore = false;
+        }
+        else {
+            page++;
         }
     }
     
